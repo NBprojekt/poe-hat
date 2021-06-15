@@ -1,4 +1,7 @@
 # PoE Hat
+Setup of waveshare poe head b
+
+// TODO: Add image
 
 ## Install python and python tooling
 ```
