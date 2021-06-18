@@ -26,8 +26,8 @@ class POE_HAT_B:
     def __init__(self,address = 0x20):
         self.i2c = smbus.SMBus(1)
         self.address = address#0x20
-        self.FAN_ON()
         self.FAN_MODE = 1;
+        
     def FAN_ON(self):
         self.i2c.write_byte(self.address, 0xFE & self.i2c.read_byte(self.address))
         
@@ -47,8 +47,7 @@ class POE_HAT_B:
         return temp
     
     def POE_HAT_Display(self, FAN_TEMP):
-        # show.Init()
-        # show.ClearBlack()
+        show.ClearBlack()
         
         image1 = Image.new('1', (show.width, show.height), "WHITE")
         draw = ImageDraw.Draw(image1)  
@@ -56,9 +55,9 @@ class POE_HAT_B:
         temp = self.GET_Temp()
         draw.text((0,1), 'IP:'+str(ip), font = font, fill = 0)
         draw.text((0,15), 'Temp:'+ str(((int)(temp*10))/10.0), font = font, fill = 0)
+        
         if(temp>=FAN_TEMP):
             self.FAN_MODE = 1
-            
         elif(temp<FAN_TEMP-2):
             self.FAN_MODE = 0
         
@@ -68,4 +67,5 @@ class POE_HAT_B:
         else:
             draw.text((77,16), 'FAN:OFF', font = ImageFont.truetype(dir_path+'/Courier_New.ttf',12), fill = 0)
             self.FAN_OFF()
+            
         show.ShowImage(show.getbuffer(image1))
