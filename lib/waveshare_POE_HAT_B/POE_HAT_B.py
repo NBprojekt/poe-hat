@@ -27,6 +27,7 @@ class POE_HAT_B:
         self.i2c = smbus.SMBus(1)
         self.address = address#0x20
         self.FAN_MODE = 1
+        show.ClearBlack()
         
     def FAN_ON(self):
         self.i2c.write_byte(self.address, 0xFE & self.i2c.read_byte(self.address))
@@ -47,8 +48,6 @@ class POE_HAT_B:
         return temp
     
     def POE_HAT_Display(self, FAN_TEMP):
-        show.ClearBlack()
-        
         image1 = Image.new('1', (show.width, show.height), "WHITE")
         draw = ImageDraw.Draw(image1)  
         ip = self.GET_IP()
