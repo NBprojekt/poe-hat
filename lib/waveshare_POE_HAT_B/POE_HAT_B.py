@@ -27,7 +27,7 @@ class POE_HAT_B:
         self.i2c = smbus.SMBus(1)
         self.address = address#0x20
         self.FAN_ON()
-        self.FAN_MODE = 0;
+        self.FAN_MODE = 1;
     def FAN_ON(self):
         self.i2c.write_byte(self.address, 0xFE & self.i2c.read_byte(self.address))
         
@@ -69,10 +69,3 @@ class POE_HAT_B:
             draw.text((77,16), 'FAN:OFF', font = ImageFont.truetype(dir_path+'/Courier_New.ttf',12), fill = 0)
             self.FAN_OFF()
         show.ShowImage(show.getbuffer(image1))
-
-
-
-
-
-
-
