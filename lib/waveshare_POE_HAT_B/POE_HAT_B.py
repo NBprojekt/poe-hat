@@ -26,7 +26,7 @@ class POE_HAT_B:
     def __init__(self,address = 0x20):
         self.i2c = smbus.SMBus(1)
         self.address = address#0x20
-        self.FAN_MODE = 1;
+        self.FAN_MODE = 1
         
     def FAN_ON(self):
         self.i2c.write_byte(self.address, 0xFE & self.i2c.read_byte(self.address))
