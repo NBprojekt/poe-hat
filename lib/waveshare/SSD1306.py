@@ -135,11 +135,4 @@ class SSD1306(object):
             # write data #
             for j in range(0, self.Column):
                 self.SendData(pBuf[j+self.width*i])
-
-
-    
-    
-    
-    
-    
     

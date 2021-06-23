@@ -8,16 +8,16 @@ if os.path.exists(libdir):
 
 import logging
 
-from waveshare_POE_HAT_B import POE_HAT_B
+from . import PoeHatDisplay
 
  
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level = logging.INFO)
 
-POE = POE_HAT_B.POE_HAT_B()
+display = PoeHatDisplay.PoeHatDisplay()
         
 try:  
     while(1):
-        POE.POE_HAT_Display(43)
+        display.update()
         time.sleep(1)
         
 except KeyboardInterrupt:    
