@@ -8,18 +8,18 @@ if os.path.exists(libdir):
 
 import logging
 
-from . import PoeHatDisplay
+from . import PoeHat
 
  
 logging.basicConfig(level = logging.INFO)
 
-display = PoeHatDisplay.PoeHatDisplay()
+poeHat = PoeHat.PoeHat()
         
 try:  
     while(1):
-        display.update()
+        poeHat.updateDisplay()
         time.sleep(1)
         
 except KeyboardInterrupt:    
     print("ctrl + c:")
-    POE.FAN_OFF()
+    poeHat.fanOff()

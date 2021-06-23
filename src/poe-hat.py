@@ -20,7 +20,7 @@ dir_path = os.path.dirname(os.path.abspath(__file__))
 
 font = ImageFont.truetype(dir_path+'/fonts/Courier_New.ttf', 13)
 
-class PoeHatDisplay:
+class PoeHat:
     def __init__(self, address = 0x20, maxTemp = 36):
         self.i2c = smbus.SMBus(1)
         self.address = address
@@ -33,7 +33,7 @@ class PoeHatDisplay:
     def fanOff(self):
         self.i2c.write_byte(self.address, 0x01 | self.i2c.read_byte(self.address))
         
-    def GET_IP(self):
+    def getIp(self):
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         s.connect(('8.8.8.8', 80))
         ip = s.getsockname()[0]
@@ -45,7 +45,7 @@ class PoeHatDisplay:
             temp = (int)(f.read() ) / 1000.0
         return temp
     
-    def update(self):
+    def updateDisplay(self):
         image = Image.new('1', (screen.width, screen.height), 'WHITE')
         draw = ImageDraw.Draw(image)  
         ip = self.GET_IP()
