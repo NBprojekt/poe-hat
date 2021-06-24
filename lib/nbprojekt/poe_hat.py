@@ -54,9 +54,9 @@ class PoeHat:
 
         if(temp >= self.maxTemp):
             draw.text((77,16), 'FAN:ON', font = self.font, fill = 0)
-            self.FAN_ON()
+            self.fanOn()
         else:
             draw.text((77,16), 'FAN:OFF', font = self.font, fill = 0)
-            self.FAN_OFF()
+            self.fanOff()
 
         screen.ShowImage(screen.getbuffer(image))
