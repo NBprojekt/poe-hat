@@ -10,18 +10,17 @@ import socket
 import fcntl
 import struct
 
-from PIL import Image,ImageDraw,ImageFont
+from PIL import Image, ImageDraw, ImageFont
 from waveshare import SSD1306
 
 screen = SSD1306.SSD1306()
 screen.Init();
 
-dir_path = os.path.dirname(os.path.abspath(__file__))
-font = ImageFont.truetype(dir_path + '/fonts/Courier_New.ttf', 13)
 
 class PoeHat:
-    def __init__(self, address = 0x20, maxTemp = 36):
+    def __init__(self, font = './Courier_New.ttf', address = 0x20, maxTemp = 36):
         self.i2c = smbus.SMBus(1)
+        self.font = font
         self.address = address
         self.maxTemp = maxTemp
         screen.ClearBlack()
@@ -50,14 +49,14 @@ class PoeHat:
         ip = self.getIp()
         temp = self.getTemp()
 
-        draw.text((0,1), 'IP: ' + str(ip), font = font, fill = 0)
-        draw.text((0,15), 'Temp: ' + str(temp), font = font, fill = 0)
+        draw.text((0,1), 'IP: ' + str(ip), font = self.font, fill = 0)
+        draw.text((0,15), 'Temp: ' + str(temp), font = self.font, fill = 0)
 
         if(temp >= self.maxTemp):
-            draw.text((77,16), 'FAN:ON', font = font, fill = 0)
+            draw.text((77,16), 'FAN:ON', font = self.font, fill = 0)
             self.FAN_ON()
         else:
-            draw.text((77,16), 'FAN:OFF', font = font, fill = 0)
+            draw.text((77,16), 'FAN:OFF', font = self.font, fill = 0)
             self.FAN_OFF()
 
         screen.ShowImage(screen.getbuffer(image))
