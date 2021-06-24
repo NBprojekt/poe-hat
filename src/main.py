@@ -13,10 +13,10 @@ from nbprojekt.poe_hat import PoeHat
 
 
 dir_path = os.path.dirname(os.path.abspath(__file__))
-font = ImageFont.truetype(dir_path + '/fonts/Courier_New.ttf', 13)
+screen_font = ImageFont.truetype(dir_path + '/fonts/Courier_New.ttf', 13)
 
 logging.basicConfig(level = logging.INFO)
-poeHat = PoeHat.PoeHat(font = font)
+poeHat = PoeHat(font = screen_font)
 
 try:
     while(1):
