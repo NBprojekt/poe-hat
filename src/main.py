@@ -8,6 +8,7 @@ libdir = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__)
 if os.path.exists(libdir):
     sys.path.append(libdir)
 
+from PIL import ImageFont
 from nbprojekt.poe_hat import PoeHat
 
 
