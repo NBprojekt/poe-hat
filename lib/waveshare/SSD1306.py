@@ -6,7 +6,7 @@
 # *----------------
 # * | This version:   V1.0
 # * | Date        :   2019-11-14
-# * | Info        :   
+# * | Info        :
 # ******************************************************************************/
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documnetation files (the "Software"), to deal
@@ -91,7 +91,7 @@ class SSD1306(object):
         for i in range(0, self.Page):
             self.SendCommand(0xb0 + i)
             self.SendCommand(0x00)
-            self.SendCommand(0x10) 
+            self.SendCommand(0x10)
             for j in range(0, self.Column):
                 self.SendData(0x00)
 
@@ -99,7 +99,7 @@ class SSD1306(object):
         for i in range(0, self.Page):
             self.SendCommand(0xb0 + i)
             self.SendCommand(0x00)
-            self.SendCommand(0x10) 
+            self.SendCommand(0x10)
             for j in range(0, self.Column):
                 self.SendData(0xff)
 
@@ -126,13 +126,12 @@ class SSD1306(object):
         for x in range(self.Page * self.Column):
             buf[x] = ~buf[x]
         return buf
-            
+
     def ShowImage(self, pBuf):
-        for i in range(0, self.Page):            
+        for i in range(0, self.Page):
             self.SendCommand(0xB0 + i) # set page address
             self.SendCommand(0x00) # set low column address
             self.SendCommand(0x10) # set high column address
             # write data #
             for j in range(0, self.Column):
                 self.SendData(pBuf[j+self.width*i])
-    
