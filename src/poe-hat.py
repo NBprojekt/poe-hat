@@ -9,16 +9,19 @@ import os
 import socket
 import fcntl
 import struct
+
+libdir = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'lib')
+if os.path.exists(libdir):
+    sys.path.append(libdir)
+
 from PIL import Image,ImageDraw,ImageFont
 from waveshare import SSD1306
 
-
 screen = SSD1306.SSD1306()
 screen.Init();
+
 dir_path = os.path.dirname(os.path.abspath(__file__))
-
-
-font = ImageFont.truetype(dir_path+'/fonts/Courier_New.ttf', 13)
+font = ImageFont.truetype(dir_path + '/fonts/Courier_New.ttf', 13)
 
 class PoeHat:
     def __init__(self, address = 0x20, maxTemp = 36):
@@ -43,16 +46,16 @@ class PoeHat:
     def getTemp(self):
         with open('/sys/class/thermal/thermal_zone0/temp', 'rt') as f:
             temp = (int)(f.read() ) / 1000.0
-        return temp
+        return ((int)(temp*10))/10.0
     
     def updateDisplay(self):
         image = Image.new('1', (screen.width, screen.height), 'WHITE')
         draw = ImageDraw.Draw(image)  
-        ip = self.GET_IP()
-        temp = self.GET_Temp()
+        ip = self.getIp()
+        temp = self.getTemp()
 
         draw.text((0,1), 'IP: ' + str(ip), font = font, fill = 0)
-        draw.text((0,15), 'Temp: ' + str(((int)(temp*10))/10.0), font = font, fill = 0)
+        draw.text((0,15), 'Temp: ' + str(temp), font = font, fill = 0)
         
         if(temp >= self.maxTemp):
             draw.text((77,16), 'FAN:ON', font = font, fill = 0)
@@ -61,4 +64,4 @@ class PoeHat:
             draw.text((77,16), 'FAN:OFF', font = font, fill = 0)
             self.FAN_OFF()
             
-        screen.ShowImage(screen.getbuffer(image1))
+        screen.ShowImage(screen.getbuffer(image))

@@ -1,19 +1,12 @@
 import time
 import sys
 import os
-
-libdir = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'lib')
-if os.path.exists(libdir):
-    sys.path.append(libdir)
-
 import logging
 
-from . import PoeHat
+from ./peo-hat import PoeHat
 
- 
 logging.basicConfig(level = logging.INFO)
-
-poeHat = PoeHat.PoeHat()
+poeHat = PoeHat()
         
 try:  
     while(1):
