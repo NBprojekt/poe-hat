@@ -1,7 +1,8 @@
 # PoE Hat
 Setup of waveshare poe head b
 
-// TODO: Add image
+![IMG_20210624_172216](https://user-images.githubusercontent.com/24683383/123290525-a5567880-d511-11eb-9e17-bfab224742c2.jpg)
+
 
 ## Install python and python tooling
 ```
