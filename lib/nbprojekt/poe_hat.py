@@ -49,8 +49,8 @@ class PoeHat:
         ip = self.getIp()
         temp = self.getTemp()
 
-        draw.text((0,1), 'IP: ' + str(ip), font = self.font, fill = 0)
-        draw.text((0,15), 'Temp: ' + str(temp), font = self.font, fill = 0)
+        draw.text((0,1), 'IP:' + str(ip), font = self.font, fill = 0)
+        draw.text((0,15), 'Temp:' + str(temp), font = self.font, fill = 0)
 
         if(temp >= self.maxTemp):
             draw.text((77,16), 'FAN:ON', font = self.font, fill = 0)
