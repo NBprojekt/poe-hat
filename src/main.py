@@ -8,7 +8,7 @@ libdir = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__)
 if os.path.exists(libdir):
     sys.path.append(libdir)
 
-from nbprojekt import PoeHat
+from nbprojekt.poe_hat import PoeHat
 
 logging.basicConfig(level = logging.INFO)
 poeHat = PoeHat.PoeHat()
