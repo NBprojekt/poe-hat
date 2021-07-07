@@ -28,4 +28,4 @@ git clone https://github.com/NBprojekt/poe-head.git /usr/share/poe-hat
 ```
 
 ## Add script to startup
-Open crontab `crontab -e` and add the following line `@startup /usr/bin/python3 /usr/share/poe-hat/src/main.py &`
+Open crontab `crontab -e` and add the following line `@reboot /usr/bin/python3 /usr/share/poe-hat/src/main.py &`
